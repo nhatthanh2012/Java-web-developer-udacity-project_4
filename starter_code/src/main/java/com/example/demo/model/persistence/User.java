@@ -13,7 +13,13 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
 
+
+/**
+ * Update by ThanhTLN - 2023/11/17
+ * Description: Entity for user
+ */
 @Entity
 @Table(name = "user")
 public class User {
@@ -26,7 +32,10 @@ public class User {
 	@Column(nullable = false, unique = true)
 	@JsonProperty
 	private String username;
-	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@Column(nullable = false)
+	private String password;
+
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
 	@JsonIgnore
@@ -55,7 +64,12 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	
-	
+	// 20231117 ThanhTLN - update start
+	public String getPassword(){
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	// 20231117 ThanhTLN - update end
 }

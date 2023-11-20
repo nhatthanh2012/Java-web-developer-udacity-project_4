@@ -18,6 +18,10 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Update by ThanhTLN - 2023/11/17
+ * Description: Sareeta Application
+ */
 @Entity
 @Table(name = "user_order")
 public class UserOrder {
@@ -42,7 +46,16 @@ public class UserOrder {
 	@Column
 	private BigDecimal total;
 
-	public Long getId() {
+	// 20231117 ThanhTLN - update start
+	public UserOrder() {
+	}
+    public UserOrder(Cart cart, User user, Long id) {
+		this.setId(id);
+		this.setUser(user);
+		this.setItems(cart.getItems().stream().collect(Collectors.toList()));
+    }
+	// 20231117 ThanhTLN - update end
+    public Long getId() {
 		return id;
 	}
 

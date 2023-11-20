@@ -40,8 +40,18 @@ public class Cart {
 	@Column
 	@JsonProperty
 	private BigDecimal total;
-	
-	public BigDecimal getTotal() {
+	// 20231117 ThanhTLN - update start
+	public Cart() {
+
+	}
+    public Cart(long id, List<Item> items, BigDecimal total) {
+		this.setId(id);
+		this.setItems(items);
+		this.setTotal(total);
+    }
+	// 20231117 ThanhTLN - update end
+
+    public BigDecimal getTotal() {
 		return total;
 	}
 
